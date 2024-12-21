@@ -1,7 +1,7 @@
 import 'package:meals_menu_recipe/models/meal_model.dart';
 // import 'package:meals_menu_recipe/models/category_model.dart';
 
-const dummyMealData = [
+const dummyMealData = [  // those are named argument 
   MealModel(
     id: 'm1', 
     categories: ['c1','c2'], 
@@ -23,7 +23,7 @@ const dummyMealData = [
       'After 2 minutes, add the tomato pieces, salt, pepper and your other spices.',
       'The sauce will be done once the spaghetti are.',
       'Feel free to add some cheese on top of the finished dish.'
-    ], 
+    ],
     duration: 20, 
     complexity: Complexity.simple, 
     affordability: Affordability.affordable, 

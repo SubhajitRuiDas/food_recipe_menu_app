@@ -1,6 +1,7 @@
 // on click of every meals category
 import 'package:flutter/material.dart';
 import 'package:meals_menu_recipe/models/meal_model.dart';
+import 'package:meals_menu_recipe/widgets/meals_item_widget.dart';
 
 class MealsInformationPage extends StatelessWidget{
   const MealsInformationPage ({
@@ -40,8 +41,8 @@ class MealsInformationPage extends StatelessWidget{
       content = ListView.builder(
         itemCount: meals.length,
         itemBuilder: (context, index) {
-          return Text(
-            meals[index].title,
+          return MealsItemWidget(
+            mealModel: meals[index],
           );
         },
       );

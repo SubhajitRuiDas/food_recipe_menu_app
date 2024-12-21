@@ -14,7 +14,7 @@ const dummyCategoryList = [
   ),
   CategoryModel(
     id: 'c3', 
-    title: 'Hamburgers', 
+    title: 'Hamburgers',
     color: Colors.orange,
   ),
   CategoryModel(
