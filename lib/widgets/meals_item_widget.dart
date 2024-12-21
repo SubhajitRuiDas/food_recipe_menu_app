@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_menu_recipe/models/meal_model.dart';
+import 'package:meals_menu_recipe/pages/meals_details_page.dart';
 import 'package:meals_menu_recipe/widgets/meals_item_lower_metadata.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -30,7 +31,9 @@ class MealsItemWidget extends StatelessWidget{
       elevation: 3.0,
       child: InkWell(  // InkWell make the Card widget clikable widget
         onTap: () {
-          
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MealsDetailsPage(
+            mealModel: mealModel,
+          )),);
         },
         child: Stack(
           children: [
