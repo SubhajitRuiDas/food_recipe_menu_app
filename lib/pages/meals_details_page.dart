@@ -24,11 +24,56 @@ class MealsDetailsPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         clipBehavior: Clip.hardEdge,
-        child: FadeInImage(
-          placeholder: MemoryImage(kTransparentImage), 
-          image: NetworkImage(mealModel.imageUrl),
-          fit: BoxFit.fill,
-          height: 270,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              FadeInImage(
+                placeholder: MemoryImage(kTransparentImage), 
+                image: NetworkImage(mealModel.imageUrl),
+                fit: BoxFit.fill,
+                height: 270,
+              ),
+              const SizedBox(height: 15,),
+              Text(
+                "Ingredients",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 15,),
+              for (final ingredients in mealModel.ingredients)
+                Text(
+                  ingredients,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+              const SizedBox(height: 20,),
+              Text(
+                "Steps",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 15,),
+              for (final step in mealModel.steps)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10, 
+                    vertical: 15,
+                  ),
+                  child: Text(
+                    step,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

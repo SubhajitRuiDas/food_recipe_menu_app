@@ -1,18 +1,24 @@
 // on click of every meals category
 import 'package:flutter/material.dart';
 import 'package:meals_menu_recipe/models/meal_model.dart';
+// import 'package:meals_menu_recipe/pages/meals_details_page.dart';
 import 'package:meals_menu_recipe/widgets/meals_item_widget.dart';
 
 class MealsInformationPage extends StatelessWidget{
   const MealsInformationPage ({
     super.key, 
-    required this.title,
+    this.title,
     required this.meals,
   });
 
   // which category type screen is now cliked and opened
-  final String title;
+  final String? title; // it can be null
   final List<MealModel> meals;
+
+  // void selectedMeal (BuildContext context, MealModel mealModel) {
+  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) 
+  //   => MealsDetailsPage(mealModel: mealModel)),);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +49,21 @@ class MealsInformationPage extends StatelessWidget{
         itemBuilder: (context, index) {
           return MealsItemWidget(
             mealModel: meals[index],
+            // onSelectMealItem: (mealModel) {
+            //   selectedMeal(context, mealModel);
+            // },
           );
         },
       );
     }
-    
+    // i have to make this scaffold optional if i reach this screen from bottomTab then it will not use scaffold
+
+    if(title == null) {
+      return content;
+    }
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: content,
     );

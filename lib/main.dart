@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:meals_menu_recipe/data/dummy_meals_data.dart';
-import 'package:meals_menu_recipe/pages/meal_categories.dart';
+// import 'package:meals_menu_recipe/pages/meal_categories.dart';
+import 'package:meals_menu_recipe/pages/tabs.dart';
 // import 'package:meals_menu_recipe/pages/meals_information_page.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true, 
         textTheme: GoogleFonts.latoTextTheme(),
       ),
-      home: const MealCategories(),
+      home: const Tabs(),
     );
   }
 }

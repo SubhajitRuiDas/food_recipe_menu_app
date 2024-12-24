@@ -21,13 +21,8 @@ class MealCategories extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pick your category"),
-        centerTitle: true,
-      ),
-      body: GridView(
-        padding: const EdgeInsets.all(12),
+    return GridView(
+        padding: const EdgeInsets.all(15),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3/2, // width/height
@@ -44,7 +39,6 @@ class MealCategories extends StatelessWidget{
               },
             ),
         ],
-      ),
-    );
+      );
   }
 }

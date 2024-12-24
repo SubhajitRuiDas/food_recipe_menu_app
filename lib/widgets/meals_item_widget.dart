@@ -8,9 +8,11 @@ class MealsItemWidget extends StatelessWidget{
   const MealsItemWidget ({
     super.key,
     required this.mealModel,
+    // required this.onSelectMealItem,
   });
 
   final MealModel mealModel;
+  // final void Function(MealModel mealModel) onSelectMealItem;
 
   String get complexityText {
     return mealModel.complexity.name[0].toUpperCase() + mealModel.complexity.name.substring(1);
@@ -34,6 +36,7 @@ class MealsItemWidget extends StatelessWidget{
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => MealsDetailsPage(
             mealModel: mealModel,
           )),);
+          // onSelectMealItem(mealModel);
         },
         child: Stack(
           children: [
