@@ -5,10 +5,12 @@ import 'package:transparent_image/transparent_image.dart';
 class MealsDetailsPage extends StatelessWidget {
   const MealsDetailsPage ({
     super.key,
-    required this.mealModel
+    required this.mealModel,
+    required this.toManageFavouriteMeal,
   });
 
   final MealModel mealModel;
+  final void Function(MealModel mealModel) toManageFavouriteMeal;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,14 @@ class MealsDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(mealModel.title),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              toManageFavouriteMeal(mealModel);
+            }, 
+            icon: const Icon(Icons.star),
+          ),
+        ],
       ),
       body: Card(
         elevation: 5,

@@ -9,10 +9,12 @@ class MealsItemWidget extends StatelessWidget{
     super.key,
     required this.mealModel,
     // required this.onSelectMealItem,
+    required this.toManageFavouriteMeal,
   });
 
   final MealModel mealModel;
   // final void Function(MealModel mealModel) onSelectMealItem;
+  final void Function(MealModel mealModel) toManageFavouriteMeal;
 
   String get complexityText {
     return mealModel.complexity.name[0].toUpperCase() + mealModel.complexity.name.substring(1);
@@ -35,6 +37,7 @@ class MealsItemWidget extends StatelessWidget{
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => MealsDetailsPage(
             mealModel: mealModel,
+            toManageFavouriteMeal: toManageFavouriteMeal,
           )),);
           // onSelectMealItem(mealModel);
         },

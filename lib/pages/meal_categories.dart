@@ -7,14 +7,20 @@ import 'package:meals_menu_recipe/pages/meals_information_page.dart';
 import 'package:meals_menu_recipe/widgets/category_grid_item.dart';
 
 class MealCategories extends StatelessWidget{
-  const MealCategories({super.key});
+  const MealCategories({
+    super.key,
+    required this.toManageFavouriteMeal,
+  });
 
+  final void Function(MealModel mealModel) toManageFavouriteMeal;
+  
   void _selectCategory (BuildContext context, CategoryModel categoryModel) { // it will take a context parameter because in stateless widget there is no context present out of build method
     List<MealModel> mealsList = dummyMealData.where((meal) => meal.categories.contains(categoryModel.id)).toList();
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => MealsInformationPage(
         title: categoryModel.title, 
         meals: mealsList,
+        toManageFavouriteMeal: toManageFavouriteMeal,
       ))
     );
   }
