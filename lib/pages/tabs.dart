@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_menu_recipe/data/dummy_meals_data.dart';
 import 'package:meals_menu_recipe/models/meal_model.dart';
 import 'package:meals_menu_recipe/pages/filters_screen.dart';
 import 'package:meals_menu_recipe/pages/meal_categories.dart';
@@ -15,12 +16,27 @@ class Tabs extends StatefulWidget{
 class _TabsState extends State<Tabs> {
   final List<MealModel> _favouriteMealsList = [];
 
-  void _setAScreen(String identifier) {
+  Map<Filters, bool> _selectedFilters = {
+    Filters.glutenFree: false,
+    Filters.lactoseFree: false,
+    Filters.vegetarian: false,
+    Filters.vegan: false,
+  };
+
+  void _setAScreen(String identifier) async{
     if(identifier == "filters"){
       Navigator.of(context).pop();
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const FiltersScreen(),),
+      final returnResult = await Navigator.of(context).push<Map<Filters, bool>>(
+        MaterialPageRoute(builder: (context) => FiltersScreen(
+          currentFilters: _selectedFilters,
+        ),),
       );
+      // print(returnResult);
+      setState(() {
+        _selectedFilters = returnResult ?? 
+        {Filters.glutenFree: false, Filters.lactoseFree: false, Filters.vegetarian: false, Filters.vegan: false};
+      });
+
     }else {
       // it is a meals screen close the drawer
       Navigator.of(context).pop();
@@ -60,7 +76,26 @@ class _TabsState extends State<Tabs> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activePage = MealCategories(toManageFavouriteMeal: _manageFavouriteMealsWithFunc,);
+    final availableMeals = dummyMealData.where((meals) {
+      if(_selectedFilters[Filters.glutenFree]! && !meals.isGlutenFree) { // means one is true and another one is not true
+        return false;
+      }
+      if(_selectedFilters[Filters.lactoseFree]! && !meals.isLactoseFree) {
+        return false;
+      }
+      if(_selectedFilters[Filters.vegetarian]! && !meals.isVegetarian) {
+        return false;
+      }
+      if(_selectedFilters[Filters.vegan]! && !meals.isVegan) {
+        return false;
+      }
+      return true; // otherwise others will be return true and include to availableMeals
+    }).toList();
+
+    Widget activePage = MealCategories(
+      toManageFavouriteMeal: _manageFavouriteMealsWithFunc,
+      availableMeals: availableMeals,
+    );
     
     String activePageTitle = "Categories";
 

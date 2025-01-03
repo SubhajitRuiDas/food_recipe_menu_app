@@ -10,12 +10,14 @@ class MealCategories extends StatelessWidget{
   const MealCategories({
     super.key,
     required this.toManageFavouriteMeal,
+    required this.availableMeals,
   });
 
   final void Function(MealModel mealModel) toManageFavouriteMeal;
+  final List<MealModel> availableMeals;
   
   void _selectCategory (BuildContext context, CategoryModel categoryModel) { // it will take a context parameter because in stateless widget there is no context present out of build method
-    List<MealModel> mealsList = dummyMealData.where((meal) => meal.categories.contains(categoryModel.id)).toList();
+    List<MealModel> mealsList = availableMeals.where((meal) => meal.categories.contains(categoryModel.id)).toList();
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => MealsInformationPage(
         title: categoryModel.title, 
