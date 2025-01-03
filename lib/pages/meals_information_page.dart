@@ -9,13 +9,11 @@ class MealsInformationPage extends StatelessWidget{
     super.key, 
     this.title,
     required this.meals,
-    required this.toManageFavouriteMeal,
   });
 
   // which category type screen is now cliked and opened
   final String? title; // it can be null
   final List<MealModel> meals;
-  final void Function(MealModel mealModel) toManageFavouriteMeal;
 
   // void selectedMeal (BuildContext context, MealModel mealModel) {
   //   Navigator.of(context).push(MaterialPageRoute(builder: (context) 
@@ -54,7 +52,6 @@ class MealsInformationPage extends StatelessWidget{
             // onSelectMealItem: (mealModel) {
             //   selectedMeal(context, mealModel);
             // },
-            toManageFavouriteMeal: toManageFavouriteMeal,
           );
         },
       );

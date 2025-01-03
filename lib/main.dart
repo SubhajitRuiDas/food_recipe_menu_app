@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:meals_menu_recipe/data/dummy_meals_data.dart';
 // import 'package:meals_menu_recipe/pages/meal_categories.dart';
@@ -6,8 +7,8 @@ import 'package:meals_menu_recipe/pages/tabs.dart';
 // import 'package:meals_menu_recipe/pages/meals_information_page.dart';
 
 void main() {
-  runApp(const MyApp());
-}
+  runApp(const ProviderScope(child: MyApp(),),);
+}  //To use Riverpod for state management in a Flutter application, the main function must be wrapped with the ProviderScope widget. This widget is essential for initializing the Riverpod container, which manages and provides access to all your providers.
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
