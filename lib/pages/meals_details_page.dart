@@ -14,6 +14,10 @@ class MealsDetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final listOfFavMeals = ref.watch(favoriteMeals);
+
+    final wasFavorite = listOfFavMeals.contains(mealModel);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(mealModel.title),
@@ -29,7 +33,7 @@ class MealsDetailsPage extends ConsumerWidget {
                 : "Meal is removed from favorite"),),
               );
             }, 
-            icon: const Icon(Icons.star),
+            icon: Icon(wasFavorite ? Icons.star : Icons.star_border),
           ),
         ],
       ),
